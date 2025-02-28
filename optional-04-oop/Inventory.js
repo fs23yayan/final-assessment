@@ -1,3 +1,5 @@
+const Item = require('./Item');
+
 /**
  * TODO
  * Selesaikan kode pembuatan class Inventory dengan ketentuan:
@@ -7,8 +9,30 @@
  * - Memiliki method `listItems` untuk mengembalikan string yang merupakan informasi detail barang (dipanggil dari fungs `item.displayDetails()`).
  */
 
-class Inventory {}
+class Inventory {
+  constructor() {
+    this.items = [];
+  }
 
+  addItem(item) {
+    this.items.push(item);
+  }
+
+  removeItem(id) {
+    this.items = this.items.filter(item => item.id !== id);
+  }
+
+  getItems() {
+    return this.items;
+  }
+
+  updateItem(id, newItem) {
+    const index = this.items.findIndex(item => item.id === id);
+    if (index !== -1) {
+      this.items[index] = newItem;
+    }
+  }
+}
 
 // Jangan hapus kode di bawah ini!
-export default Inventory;
+module.exports = Inventory;
